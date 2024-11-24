@@ -4,7 +4,7 @@ import com.caldeira.projetofinal.user.models.request.UserRequestModel;
 import org.springframework.stereotype.Component;
 @Component
 public class UserRequestValidator {
-    private void validate(UserRequestModel model){
+    public void validate(UserRequestModel model){
         if (model.getFirstName() == null || model.getFirstName().length() < 3) {
             throw new IllegalArgumentException("'firstName' cannot be null or less than 3 characters long.");
         }
