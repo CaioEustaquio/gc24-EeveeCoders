@@ -1,8 +1,13 @@
 package com.caldeira.projetofinal.user.services;
 
+import com.caldeira.projetofinal.user.entities.UserEntity;
+import com.caldeira.projetofinal.user.models.response.UserResponseModel;
 import com.caldeira.projetofinal.user.repositories.UserRepository;
 import com.caldeira.projetofinal.validators.UserRequestValidator;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -13,5 +18,17 @@ public class UserService {
         this.userRequestValidator = userRequestValidator;
     }
 
+    public List<UserResponseModel> getAll(){
 
+        List<UserEntity> usersList = this.userRepository.findAll();
+
+        return usersList.stream()
+            .map(user -> new UserResponseModel(
+                user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getCreationDate()
+            ))
+            .collect(Collectors.toList());
+    };
 }
