@@ -1,11 +1,13 @@
 package com.caldeira.projetofinal.user.services;
 
 import com.caldeira.projetofinal.user.entities.UserEntity;
+import com.caldeira.projetofinal.user.models.request.UserRequestModel;
 import com.caldeira.projetofinal.user.models.response.UserResponseModel;
 import com.caldeira.projetofinal.user.repositories.UserRepository;
 import com.caldeira.projetofinal.validators.UserRequestValidator;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -46,6 +48,25 @@ public class UserService {
             user.getFirstName(),
             user.getLastName(),
             user.getCreationDate()
+        );
+    }
+
+    public UserResponseModel create(UserRequestModel requestModel){
+
+        this.userRequestValidator.validate(requestModel);
+
+        UserEntity newUser = new UserEntity();
+        newUser.setFirstName(requestModel.getFirstName());
+        newUser.setLastName(requestModel.getLastName());
+        newUser.setCreationDate(LocalDateTime.now());
+
+        UserEntity savedUser = this.userRepository.save(newUser);
+
+        return new UserResponseModel(
+            savedUser.getId(),
+            savedUser.getFirstName(),
+            savedUser.getLastName(),
+            savedUser.getCreationDate()
         );
     }
 }
