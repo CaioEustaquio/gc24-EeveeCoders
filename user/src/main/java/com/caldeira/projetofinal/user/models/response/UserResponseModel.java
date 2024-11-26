@@ -11,8 +11,8 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 public class UserResponseModel {
-    UUID id;
-    String firstName;
-    String lastName;
-    LocalDateTime creationDate;
+    private UUID id;
+    private String firstName;
+    private String lastName;
+    private LocalDateTime creationDate;
 }
