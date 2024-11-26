@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class UserRequestModel {
-    String firstName;
-    String lastName;
+    private String firstName;
+    private String lastName;
 }
