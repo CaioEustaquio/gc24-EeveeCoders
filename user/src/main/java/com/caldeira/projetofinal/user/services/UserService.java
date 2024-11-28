@@ -94,4 +94,13 @@ public class UserService {
             updatedUser.getCreationDate()
         );
     }
+
+    public boolean deleteById(UUID id){
+        if (!this.userRepository.existsById(id)) {
+            return false;
+        }
+
+        this.userRepository.deleteById(id);
+        return true;
+    }
 }
