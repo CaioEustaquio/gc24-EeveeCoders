@@ -1,4 +1,4 @@
-package com.caldeira.projetofinal.validators;
+package com.caldeira.projetofinal.user.validators;
 
 import com.caldeira.projetofinal.user.models.request.UserRequestModel;
 import org.springframework.stereotype.Component;
