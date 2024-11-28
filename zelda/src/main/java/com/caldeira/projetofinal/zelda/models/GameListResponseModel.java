@@ -7,7 +7,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 public class GameListResponseModel {
-    private Boolean sucess;
+    private Boolean success;
     private Integer count;
     private List<GameModel> data;
 }
