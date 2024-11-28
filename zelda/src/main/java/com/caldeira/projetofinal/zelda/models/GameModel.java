@@ -8,10 +8,10 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 public class GameModel {
+    private UUID id;
     private String name;
     private String description;
     private String developer;
     private String publisher;
     private LocalDateTime released_date;
-    private UUID id;
 }
