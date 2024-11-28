@@ -4,7 +4,7 @@ import com.caldeira.projetofinal.user.entities.UserEntity;
 import com.caldeira.projetofinal.user.models.request.UserRequestModel;
 import com.caldeira.projetofinal.user.models.response.UserResponseModel;
 import com.caldeira.projetofinal.user.repositories.UserRepository;
-import com.caldeira.projetofinal.validators.UserRequestValidator;
+import com.caldeira.projetofinal.user.validators.UserRequestValidator;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
