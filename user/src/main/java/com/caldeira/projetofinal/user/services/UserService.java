@@ -69,4 +69,27 @@ public class UserService {
             savedUser.getCreationDate()
         );
     }
+
+    public UserResponseModel update(UUID id, UserRequestModel requestModel){
+
+        this.userRequestValidator.validate(requestModel);
+
+        UserEntity existingUser = this.userRepository.findById(id).orElse(null);
+
+        if (existingUser == null) {
+            return null;
+        }
+
+        existingUser.setFirstName(requestModel.getFirstName());
+        existingUser.setLastName(requestModel.getLastName());
+
+        UserEntity updatedUser = this.userRepository.save(existingUser);
+
+        return new UserResponseModel(
+            updatedUser.getId(),
+            updatedUser.getFirstName(),
+            updatedUser.getLastName(),
+            updatedUser.getCreationDate()
+        );
+    }
 }
