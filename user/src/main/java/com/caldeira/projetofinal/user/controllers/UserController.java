@@ -44,4 +44,16 @@ public class UserController{
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<UserResponseModel> update(@RequestBody UserRequestModel requestModel, @PathVariable UUID updatingID){
+        try {
+            UserResponseModel responseModel = userService.update(updatingID, requestModel);
+            if (responseModel == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+            return new ResponseEntity<>(responseModel, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 }
