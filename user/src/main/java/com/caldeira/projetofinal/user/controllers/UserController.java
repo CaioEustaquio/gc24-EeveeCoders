@@ -46,9 +46,9 @@ public class UserController{
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<UserResponseModel> update(@RequestBody UserRequestModel requestModel, @PathVariable UUID updatingID){
+    public ResponseEntity<UserResponseModel> update(@RequestBody UserRequestModel requestModel, @PathVariable UUID id){
         try {
-            UserResponseModel responseModel = userService.update(updatingID, requestModel);
+            UserResponseModel responseModel = userService.update(id, requestModel);
             if (responseModel == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
             return new ResponseEntity<>(responseModel, HttpStatus.OK);
