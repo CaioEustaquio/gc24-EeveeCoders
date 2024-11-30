@@ -57,7 +57,7 @@ public class UserController{
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete-by-id/{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable UUID id){
         boolean delete = userService.deleteById(id);
         if (delete){
