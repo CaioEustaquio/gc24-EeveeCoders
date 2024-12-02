@@ -13,6 +13,17 @@ public class ZeldaGatewayService {
         this.restTemplate = restTemplate;
     }
 
+
+    public GameModel getById(String id) {
+        String url = String.format("https://zelda.fanapis.com/api/games/%s", id);
+
+        try {
+            ResponseEntity<GameModel> response = restTemplate.getForEntity(url, GameModel.class);
+            return response.getBody();
+        } catch (Exception e) {
+            return null;
+        }
+      
     public List<GameModel> getAll(Integer page, Integer size) {
         if (page == null) {
             page = 0;
