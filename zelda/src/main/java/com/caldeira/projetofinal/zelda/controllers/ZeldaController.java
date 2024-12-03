@@ -22,6 +22,7 @@ public class ZeldaController {
             @RequestParam(required = false) Integer page,
             @RequestParam(required = false) Integer size
     ) {
+
         return new ResponseEntity<>(zeldaGatewayService.getAll(page, size), HttpStatus.OK);
     }
 
