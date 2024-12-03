@@ -1,4 +1,6 @@
 package com.caldeira.projetofinal.zelda.models;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,10 +10,11 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 public class GameModel {
-    private UUID id;
+    private String id;
     private String name;
     private String description;
     private String developer;
     private String publisher;
-    private LocalDateTime released_date;
+    @JsonProperty("released_date")
+    private String releasedDate;
 }

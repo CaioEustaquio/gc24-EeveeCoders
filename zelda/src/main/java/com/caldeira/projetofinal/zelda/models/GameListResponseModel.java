@@ -5,7 +5,6 @@ import lombok.Setter;
 import java.util.List;
 @Getter
 @Setter
-@AllArgsConstructor
 public class GameListResponseModel {
     private Boolean success;
     private Integer count;
