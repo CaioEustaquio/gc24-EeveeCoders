@@ -20,7 +20,7 @@ public class ZeldaController {
             @RequestParam(required = false) Integer page,
             @RequestParam(required = false) Integer size
     ) {
-        List<GameModel> games = zeldaGatewayService.getAllGames(page, size);
+        List<GameModel> games = zeldaGatewayService.getAll(page, size);
         return ResponseEntity.ok(games);
     }
 }
