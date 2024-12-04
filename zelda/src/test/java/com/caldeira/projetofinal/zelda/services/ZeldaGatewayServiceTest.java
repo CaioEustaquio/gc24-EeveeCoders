@@ -1,5 +1,6 @@
 package com.caldeira.projetofinal.zelda.services;
 
+import com.caldeira.projetofinal.zelda.fixtures.TestFixtures;
 import com.caldeira.projetofinal.zelda.models.GameListResponseModel;
 import com.caldeira.projetofinal.zelda.models.GameModel;
 import org.junit.jupiter.api.Assertions;
@@ -34,14 +35,7 @@ public class ZeldaGatewayServiceTest {
         GameListResponseModel expectedList = new GameListResponseModel();
         expectedList.setSuccess(true);
         expectedList.setCount(1);
-        expectedList.setData(List.of(new GameModel(
-                "5f6ce9d805615a85623ec2b7",
-                " February 21, 1986",
-                "The Legend of Zelda is the first installment of the Zelda series...",
-                "Nintendo R&D 4",
-                "Nintendo",
-                " February 21, 1986"
-        )));
+        expectedList.setData(List.of(TestFixtures.getFixedGameListModel().getFirst()));
 
         // Mock da resposta do RestTemplate
         ResponseEntity<GameListResponseModel> mockedResponse = new ResponseEntity<>(expectedList, HttpStatus.OK);
@@ -55,6 +49,30 @@ public class ZeldaGatewayServiceTest {
         ).thenReturn(mockedResponse);
 
         List<GameModel> result = zeldaGatewayService.getAll(0, 1);
+
+        Assertions.assertEquals(expectedList.getData(), result);
+    }
+
+    @Test
+    public void getAllTest_NullParameters(){
+        // Criando o objeto esperado
+        GameListResponseModel expectedList = new GameListResponseModel();
+        expectedList.setSuccess(true);
+        expectedList.setCount(5);
+        expectedList.setData(TestFixtures.getFixedGameListModel());
+
+        // Mock da resposta do RestTemplate
+        ResponseEntity<GameListResponseModel> mockedResponse = new ResponseEntity<>(expectedList, HttpStatus.OK);
+
+        // Configuração do mock do exchange
+        Mockito.when(restTemplate.exchange(
+                Mockito.anyString(),
+                Mockito.eq(HttpMethod.GET),
+                Mockito.isNull(),
+                Mockito.any(ParameterizedTypeReference.class))
+        ).thenReturn(mockedResponse);
+
+        List<GameModel> result = zeldaGatewayService.getAll(null, null);
 
         Assertions.assertEquals(expectedList.getData(), result);
     }
