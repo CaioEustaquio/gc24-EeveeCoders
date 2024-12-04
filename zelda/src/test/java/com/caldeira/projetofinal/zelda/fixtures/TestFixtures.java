@@ -15,4 +15,15 @@ public class TestFixtures {
                 new GameModel("5f6ce9d805615a85623ec2bb", "The Legend of Zelda: Link's Awakening DX", "The game was also made available on the Nintendo 3DS eShop on June 7, 2011 at the price of $5.99 US. ", "Nintendo", "Nintendo", " December 15, 1998")
         );
     }
+
+    public static GameModel getByNameHyruleWarriors(){
+        return new GameModel(
+                "5f6ce9d805615a85623ec2d1",
+                "Hyrule Warriors Legends",
+                "Hyrule Warriors Legends is a spin-off for the Nintendo 3DS, combining the world of The Legend of Zelda series with the action of Koei Tecmo's Dynasty Warriors series. The game is a port and a new version of Hyrule Warriors, featuring new characters and other mechanical changes. ",
+                "Omega Force",
+                "Koei Tecmo",
+                " March 25, 2016"
+        );
+    }
 }
