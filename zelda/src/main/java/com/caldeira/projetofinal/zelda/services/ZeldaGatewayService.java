@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ZeldaGatewayService {
@@ -65,7 +66,6 @@ public class ZeldaGatewayService {
 
         GameListResponseModel games = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<GameListResponseModel>(){
         }).getBody();
-
         if (games.getSuccess() && games.getData() != null){
             return games.getData();
         }
