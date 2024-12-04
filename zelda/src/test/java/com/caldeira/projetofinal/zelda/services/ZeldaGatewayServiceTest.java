@@ -112,15 +112,7 @@ public class ZeldaGatewayServiceTest {
 
     @Test
     public void getByIdTest_InvalidId(){
-        Mockito.when(restTemplate.exchange(
-                Mockito.anyString(),
-                Mockito.eq(HttpMethod.GET),
-                Mockito.isNull(),
-                Mockito.any(ParameterizedTypeReference.class))
-        ).thenReturn(new ResponseEntity<>(new GameResponseModel(false, null), HttpStatus.BAD_REQUEST));
-
         GameModel result = zeldaGatewayService.getById("randominvalidid");
-
         Assertions.assertNull(result);
     }
 
@@ -169,6 +161,24 @@ public class ZeldaGatewayServiceTest {
         ).thenReturn(new ResponseEntity<>(expectedResponse, HttpStatus.BAD_REQUEST));
 
         List<GameModel> result = zeldaGatewayService.getAllByName("invalid name");
+
+        Assertions.assertEquals(result, expectedResponse.getData());
+    }
+
+    @Test
+    public void getAllByNameTest_RequestFailed(){
+        GameListResponseModel expectedResponse = new GameListResponseModel();
+        expectedResponse.setSuccess(false);
+        expectedResponse.setCount(0);
+        expectedResponse.setData(List.of());
+        Mockito.when(restTemplate.exchange(
+                Mockito.anyString(),
+                Mockito.eq(HttpMethod.GET),
+                Mockito.isNull(),
+                Mockito.any(ParameterizedTypeReference.class))
+        ).thenReturn(new ResponseEntity<>(expectedResponse, HttpStatus.INTERNAL_SERVER_ERROR));
+
+        List<GameModel> result = zeldaGatewayService.getAllByName("Hyrule Warriors Legends");
 
         Assertions.assertEquals(result, expectedResponse.getData());
     }
