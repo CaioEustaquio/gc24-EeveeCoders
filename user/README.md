@@ -14,9 +14,7 @@ Este projeto seria um micrserviço parte do Boss que é encarregado de receber r
 ## Instalação
 Primeiro clone o repositório usando git, para isso abra o terminal, CMD no Windows, Terminal no MacOS ou bash em Linux. Vá ate o diretório no terminal onde deseja clonar e digite `git clone https://github.com/CaioEustaquio/gc24-EeveeCoders.git`.
 
-Após isso olhe se existe na sua instância do Postgre existe um usuário chamado `postgres` com senha `admin`. Ele geralmente é o usuário padrão que já vem na instalação, mas você pode mudar qual usuário o senha o programa vai ingressar no banco de dados editando os campos por meio de seu editor de código `spring.datasource.username` e `spring.datasource.password` do arquivo `application.properties` da pasta `/user/src/java/resources`.
-
-Para mudar qual seria o endereço web e a porta aonde serão feitas as requisições só mudar naquele mesmo `application.properties` no campo `spring.datasource.url`.
+Crie um Banco de Dados com o postgreSQL, seguindo [essas instruções](https://www.postgresql.org/docs/current/manage-ag-createdb.html) ou usando algum gerenciador de banco de dados como pgadmin4 ou DBeaver. Depois de criar o banco va ate a pasta mãe do user-api e crie um novo arquivo vazio só chamado `.env` e nele coloque os campos que se encontram no arquivo `.env.example` que se encontra no mesmo diretório. No campo `DB_CONNECTION_STRING=` coloque o endereço onde se encontra o banco, seguindo esse padrão: `jdbc:postgresql://<endereço-web>:<porta>/<nome-do-banco>`; em `DB_USERNAME=` escreva um usuario do Postgre que tenha acesso ao banco, e `DB_PASSWORD=` a senha desse usuario.
 
 Para montar o programa simplesmente com seu IDE rode o arquivo `UserApiProjetoFinalApplication.java` em `/user/src/java/com.caldeira.projetofinal/`.
 ## Uso
