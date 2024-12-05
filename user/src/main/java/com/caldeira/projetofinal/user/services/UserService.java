@@ -55,10 +55,12 @@ public class UserService {
 
         this.userRequestValidator.validate(requestModel);
 
-        UserEntity newUser = new UserEntity();
-        newUser.setFirstName(requestModel.getFirstName());
-        newUser.setLastName(requestModel.getLastName());
-        newUser.setCreationDate(LocalDateTime.now());
+        UserEntity newUser = new UserEntity(
+            UUID.randomUUID(),
+            requestModel.getFirstName(),
+            requestModel.getLastName(),
+            LocalDateTime.now()
+        );
 
         UserEntity savedUser = this.userRepository.save(newUser);
 
@@ -91,5 +93,14 @@ public class UserService {
             updatedUser.getLastName(),
             updatedUser.getCreationDate()
         );
+    }
+
+    public boolean deleteById(UUID id){
+        if (!this.userRepository.existsById(id)) {
+            return false;
+        }
+
+        this.userRepository.deleteById(id);
+        return true;
     }
 }
