@@ -1,6 +1,6 @@
 # User-API para Boss-3 da Geração Caldeira
 Este projeto seria um micrserviço parte do Boss que é encarregado de receber requisições API para criar, deletar, atualizar e recuperar usuários do sistema por meio de um Banco de Dados.
-## Tecnologías
+## Tecnologias
 - Java 21
 - Maven
 - Spring Boot
